@@ -3,11 +3,28 @@ import "./style/Login.css";
 import axios from "axios";
 import cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
+import Auth from "../../controllers/Auth";
 
 
 
 const Login = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+
+    const fetch = async () => {
+      try {
+        const x = await Auth();
+        // console.log(x);
+        if(x){
+          navigate("/");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetch();
+  }, []);
+
   const [FormData, setFormData] = useState({
     email: "",
     password: "",

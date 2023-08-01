@@ -65,4 +65,29 @@ router.post("/api/register", async (req, res) => {
     }
   });
 
+  router.post("/api/authcheck", async (req, res) => {
+    try {
+      const fetchedUserDetail = req.body;
+      if(fetchedUserDetail.jwt==null){
+          res.send({
+              auth : "failed"
+          })
+          return;
+      }
+      const verifyToken = jwt.verify(fetchedUserDetail.jwt,process.env.JWTTOKEN_KEY);
+        const user = await userDetail.findOne({ _id: verifyToken._id });
+        if(user!=null){
+          res.send({
+              auth : "success"
+          })
+        }else {
+          res.send({
+              auth : "failed"
+          })
+        }
+    } catch (e) {
+      console.log(e);
+    }
+  });
+
 module.exports = router;

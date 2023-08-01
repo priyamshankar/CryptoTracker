@@ -3,11 +3,26 @@ import "./style/Signup.css";
 import axios from "axios";
 import cookies from "js-cookie";
 import { useNavigate } from 'react-router-dom';
+import Auth from "../../controllers/Auth";
 
 const Signup = () => {
-  
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+    const fetch = async () => {
+      try {
+        const x = await Auth();
+        if(x){
+          navigate("/");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetch();
+  }, []);
 
   const [FormData, setFormData] = useState({
     firstName : '',
