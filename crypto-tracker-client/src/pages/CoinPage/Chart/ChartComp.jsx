@@ -3,10 +3,12 @@ import React, { useEffect, useState } from 'react';
 import "./style/chart.css";
 import Chart from 'chart.js/auto';
 import { Line } from "react-chartjs-2";
+import AlertBox from '../../../components/AlertBox/AlertBox';
 
 const ChartComp = ({coinId}) => {
     const [coinData, setCoinData] = useState([]);
     const [date,setDate] = useState(1);
+    const [alert,setAlert] = useState(false);
 
     async function fetchCoinData (){
 
@@ -16,7 +18,7 @@ const ChartComp = ({coinId}) => {
     }
 
     useEffect(() => {
-          fetchCoinData();
+        //   fetchCoinData();
         }, [date])
   return (
     <div className='chartcontainer'>
@@ -58,6 +60,10 @@ const ChartComp = ({coinId}) => {
                 ],
             }}
         />
+            <button onClick={()=>{setAlert(true)}}>Add Alert</button>
+        {alert && <div className="alertdialog">
+            <AlertBox setAlert={setAlert} coinId={coinId}/>
+        </div>}
         </div>
     </div>
   )

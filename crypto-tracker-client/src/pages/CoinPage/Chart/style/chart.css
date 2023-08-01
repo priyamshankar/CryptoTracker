@@ -1,3 +1,6 @@
+.chartcontainer .alertdialog {
+  position: absolute;
+}
 .chartcontainer p {
   font-size: 34px;
   font-weight: 700;
