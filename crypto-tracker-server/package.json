@@ -1,0 +1,11 @@
+{
+  "name": "crypto-tracker-server",
+  "version": "1.0.0",
+  "description": "Server for crypto tracker react app which handles all the operations like authentication, authorisation, all the rest api's and email functionalities.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Priyam Shankar",
+  "license": "ISC"
+}
