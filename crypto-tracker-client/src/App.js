@@ -1,11 +1,14 @@
 import {  BrowserRouter, Route, Routes } from "react-router-dom";
+import "./Global/GlobalStyle/style.css";
+import Navbar from "./components/Navbar/Navbar";
 import Login from "./pages/Login/Login";
 import Logout from "./pages/Login/Logout";
 import Signup from "./pages/Signup/Signup";
 
 function App() {
   return (
-   <div>
+   <div className="appcontainer">
+    <Navbar/>
     <BrowserRouter>
     <Routes>
       <Route path="/" element={"hello world"}/>

@@ -11,11 +11,11 @@
 .Loginpage-container a {
   all: unset;
   cursor: pointer;
-  color: rgb(68, 148, 151);
+  color: #911738;
 }
 .Loginpage-container .loginpage-gridleft {
   height: 100%;
-  background-color: cadetblue;
+  background-color: #BE1E2E;
 }
 .Loginpage-container .loginFormHeader-loginpage {
   display: flex;
@@ -51,7 +51,7 @@
 }
 .Loginpage-container .loginformbottom-loginpage button {
   all: unset;
-  background-color: cadetblue;
+  background-color: #BE1E2E;
   height: 2.4rem;
   width: 6rem;
   text-align: center;
@@ -66,19 +66,19 @@
   cursor: pointer;
 }
 .Loginpage-container input::-moz-placeholder {
-  color: cadetblue;
+  color: #BE1E2E;
   font-size: 16px;
 }
 .Loginpage-container input::placeholder {
-  color: cadetblue;
+  color: #BE1E2E;
   font-size: 16px;
 }
 .Loginpage-container .input-loginpage {
   all: unset;
   height: 2rem;
-  border: solid 0.3px cadetblue;
+  border: solid 0.3px #BE1E2E;
   padding: 0.3rem;
-  color: rgb(68, 148, 151);
+  color: #911738;
   font-weight: 450;
   font-size: 19px;
 }/*# sourceMappingURL=Login.css.map */
