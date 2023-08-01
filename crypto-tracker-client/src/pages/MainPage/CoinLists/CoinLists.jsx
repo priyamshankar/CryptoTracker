@@ -131,7 +131,7 @@ const CoinLists = () => {
         setCoinList(fetchedCoin);
     }
     useEffect(() => {
-    //   fetchCoins();
+      fetchCoins();
     }, [])
     
     function numberWithCommas(x) {

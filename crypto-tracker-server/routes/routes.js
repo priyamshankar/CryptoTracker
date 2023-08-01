@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router();
 require("../Model/Connection");
 const userDetail = require("../Model/userSchema");
+const alertSh = require("../Model/alertSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -89,5 +90,18 @@ router.post("/api/register", async (req, res) => {
       console.log(e);
     }
   });
+
+  router.post("/api/alert",async(req,res)=>{
+    try{
+      const fetchData = req.body;
+      const updateres = new alertSh(fetchData);
+      
+      await updateres.save();
+      console.log(req.body);
+      res.send("got it");
+    }catch(e){
+      console.log(e);
+    }
+  })
 
 module.exports = router;

@@ -18,7 +18,7 @@ const ChartComp = ({coinId}) => {
     }
 
     useEffect(() => {
-        //   fetchCoinData();
+          fetchCoinData();
         }, [date])
   return (
     <div className='chartcontainer'>
