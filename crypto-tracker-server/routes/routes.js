@@ -2,9 +2,67 @@ const express = require("express");
 const router = new express.Router();
 require("../Model/Connection");
 const userDetail = require("../Model/userSchema");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
 
+
+router.post("/api/register", async (req, res) => {
+    try {
+      const fetchedPswd = req.body.password[0];
+      const hashedPswd = await bcrypt.hash(fetchedPswd, 10);
+      const fetchedUserDetail = new userDetail({
+        firstName: req.body.firstName[0],
+        lastName: req.body.lastName[0],
+        email: req.body.email[0],
+        password: hashedPswd,
+      });
+      await fetchedUserDetail.save();
+      const jwtToken = await fetchedUserDetail.generateAuthToken();
+      res.send({
+        jwt: jwtToken,
+        id: fetchedUserDetail._id,
+      });
+      console.log(fetchedUserDetail);
+      console.log(jwtToken);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+  
+  router.post("/api/login", async (req, res) => {
+    try {
+      const fetchedUserDetail = req.body;
+      const fetchedFromDb = await userDetail.findOne({
+        email: req.body.email[0],
+      });
+      if (fetchedFromDb != null) {
+        const pwMatch = await bcrypt.compare(
+          fetchedUserDetail.password[0],
+          fetchedFromDb.password
+        );
+        const jwtToken = await fetchedFromDb.generateAuthToken();
+        if (pwMatch) {
+          res.send({
+            loginMatched: true,
+            jwt: jwtToken,
+            id: fetchedFromDb._id,
+          });
+        } else {
+          res.send({
+            loginMatched: false,
+          });
+        }
+      } else {
+        res.send({
+          loginMatched: false,
+        });
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  });
 
 module.exports = router;

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./style/Login.css";
 import axios from "axios";
+import cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const [FormData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,16 +17,25 @@ const Login = () => {
     setFormData({ ...FormData, [e.target.name]: [e.target.value] });
   };
 
+  const setCookie = (c) => {
+    const jwt = c.jwt;
+    const id = c.id;
+    cookies.set("jwt", jwt,{ expires: 365 });
+    cookies.set("id", id,{ expires: 365 });
+    navigate("/");
+  };
+
   const wrongCredAction = () => {
     alert("Wrong Email or password");
   };
 
   const handlesubmit = (e) => {
     e.preventDefault();
-    axios.post("", FormData).then((res) => {
+    axios.post("http://localhost:5000/api/login", FormData).then((res) => {
       console.log(res.data);
       const data = res.data;
       if (data.loginMatched) {
+        setCookie(data);
       } else {
         wrongCredAction();
       }

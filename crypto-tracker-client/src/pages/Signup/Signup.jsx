@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./style/Signup.css";
 import axios from "axios";
-
+import cookies from "js-cookie";
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
+  
+  const navigate = useNavigate();
+
 
   const [FormData, setFormData] = useState({
     firstName : '',
@@ -16,12 +20,24 @@ const Signup = () => {
   }
 
   const handlepassword = (e)=>{
-    
+      const cookie = document.cookie;
+      console.log(cookie);
+  }
+
+  const setCookie = (c)=>{
+    // const [jwt , id] = c;
+    const jwt = c.jwt;
+    const id = c.id;
+    cookies.set("jwt",jwt);
+    cookies.set("id",id);
+    navigate("/");
   }
 
   const handleSubmit = ()=>{
-    axios.post("",FormData)
+    axios.post("http://localhost:5000/api/register",FormData)
   .then((res)=>{
+    console.log(res.data);
+    setCookie(res.data);
   })}
   return (
     <div className="Signuppage-container">
