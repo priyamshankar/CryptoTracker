@@ -2,6 +2,7 @@ const express =require("express");
 const app=express();
 const port=process.env.PORT || 5000;
 const router=require("./routes/routes");
+require("./Controller/emailScheduler");
 
 // Enable CORS for all routes
 app.use((req, res, next) => {

@@ -99,7 +99,6 @@ router.post("/api/register", async (req, res) => {
       
       await updateres.save();
       console.log(req.body);
-      email("priyamshankar.5@gmail.com","hello","hwllo");
       res.send("got it");
     }catch(e){
       console.log(e);

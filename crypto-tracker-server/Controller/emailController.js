@@ -1,17 +1,11 @@
 const nodemailer = require('nodemailer');
-const axios = require("axios");
-const cron = require('node-cron');
-
-const userDetail = require("../Model/userSchema");
-const alertSh = require("../Model/alertSchema");
-
 
 const transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email', 
     port: 587,
     auth: {
-      user: 'modesta72@ethereal.email',
-      pass: 'jDhr5f351FvN8UA2C7',
+      user: 'garry.fadel@ethereal.email',
+      pass: 'qnvX9bxSCsmAexsTsZ',
     },
   });
   
