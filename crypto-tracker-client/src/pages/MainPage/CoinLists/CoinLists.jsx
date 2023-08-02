@@ -124,11 +124,20 @@ const CoinLists = () => {
         }]);
 
     async function fetchCoins (){
+        try{
 
-        const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en");
-        const fetchedCoin = response.data; 
-        console.log(fetchedCoin);
-        setCoinList(fetchedCoin);
+            const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=INR&order=market_cap_desc&per_page=100&page=1&sparkline=false&locale=en").then((res)=>{
+                console.log(res.status.error_code)
+                if(res.status===429){
+                    alert("The coinGecko api has reached its limit please try after 2 minutes");
+                }
+            });
+            const fetchedCoin = response.data; 
+            console.log(fetchedCoin);
+            setCoinList(fetchedCoin);
+        }catch(e){
+            console.log(e);
+        }
     }
     useEffect(() => {
       fetchCoins();
@@ -145,6 +154,8 @@ const CoinLists = () => {
   return (
     <div className='coinList-container'>
         <table>
+            <thead>
+
             <tr className='heading-table'>
                 <td></td>
                 <td>Name</td>
@@ -152,10 +163,13 @@ const CoinLists = () => {
                 <td>24h change</td>
                 <td>Market cap</td>
             </tr>
+            </thead>
             {coinList.map((coin)=>{
                 const posProfit = coin.price_change_percentage_24h>0;
                 return (
-                    <tr key={coin.id} className="col-tab" onClick={()=>handleClick(coin.id)}>
+                    <tbody  key={coin.id}>
+
+                    <tr className="col-tab" onClick={()=>handleClick(coin.id)}>
                         <td><img src={coin.image} alt="" /></td>
                         <td>
                         {coin.name}
@@ -163,9 +177,10 @@ const CoinLists = () => {
                         <td>{coin.current_price}</td>
                         <td style={{
                             color: posProfit > 0 ? "rgb(14, 203, 129)" : "red",
-                          }}>{coin.price_change_percentage_24h.toFixed(2)}%</td>
+                        }}>{coin.price_change_percentage_24h.toFixed(2)}%</td>
                         <td>{numberWithCommas(coin.current_price.toFixed(2))}m</td>
                     </tr>
+                    </tbody>
                 )
             })}
         </table>

@@ -6,7 +6,8 @@ const alertSchemadet = new mongoose.Schema({
     userId : String,
     min : Number,
     max : Number,
-    coinId:String
+    coinId:String,
+    notify:Boolean,
 });
 
 

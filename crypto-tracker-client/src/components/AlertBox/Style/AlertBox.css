@@ -8,6 +8,11 @@
   flex-direction: column;
   gap: 1rem;
 }
+.alertBoxContainer .check {
+  margin-left: 2.5rem;
+  font-size: 16px;
+  margin-top: 1rem;
+}
 .alertBoxContainer h2 {
   text-align: center;
 }

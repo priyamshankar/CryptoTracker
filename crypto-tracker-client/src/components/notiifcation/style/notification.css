@@ -1,0 +1,17 @@
+.notifContainer {
+  position: absolute;
+  height: 50vh;
+  width: 20vw;
+  z-index: 999;
+  background-color: #FAE0E0;
+  top: 2.5rem;
+}
+.notifContainer .headNoti {
+  display: flex;
+  justify-content: space-evenly;
+}
+.notifContainer .headNoti button {
+  all: unset;
+  color: #911738;
+  cursor: pointer;
+}/*# sourceMappingURL=notification.css.map */

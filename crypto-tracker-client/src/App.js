@@ -7,6 +7,7 @@ import Signup from "./pages/Signup/Signup";
 import MainPage from "./pages/MainPage/MainPage";
 import CoinPage from "./pages/CoinPage/CoinPage";
 
+
 function App() {
   return (
    <div className="appcontainer">

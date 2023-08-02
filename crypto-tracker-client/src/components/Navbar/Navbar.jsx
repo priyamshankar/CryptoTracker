@@ -1,7 +1,34 @@
-import React from 'react';
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import React, { useEffect, useState } from 'react';
 import "./style/Navbar.css";
+import bell from "../../Global/GlobalImages/bell.png";
+import Notification from '../notiifcation/Notification';
 
 const Navbar = () => {
+const [notiToggle , setnotiToggle ] = useState(false);
+  const [notificaiton,setNotification] = useState([]);
+
+  const fetchNotifications = async () =>{
+    await axios.post("http://localhost:5000/api/notification",{id:Cookies.get("id")}).then((res)=>{
+      setNotification(res.data);
+      // console.log(res.data);
+    });
+  }
+
+  useEffect(() => {
+    fetchNotifications(); 
+
+    const interval = setInterval(() => {
+      fetchNotifications(); 
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  function toggleHandle(){
+    setnotiToggle(!notiToggle);
+  }
+
   return (
     <div className='navbar-container'>
       <div className="logopart">
@@ -20,6 +47,12 @@ const Navbar = () => {
         </button>
       </div>
         <div className="lastEmb">
+          {notiToggle && <div className="closeban"onClick={toggleHandle}></div>}
+          <div className="bell" >
+          <img src={bell} alt="" onClick={toggleHandle}/>
+          <p>{notificaiton.length}</p>
+         {notiToggle && <Notification notificaiton={notificaiton} setNotification={setNotification}/>}
+          </div>
           <button>Contact us</button>
         </div>
 

@@ -67,6 +67,18 @@ router.post("/api/register", async (req, res) => {
     }
   });
 
+  router.post("/api/notification",async(req,res)=>{
+    try{
+      const user = await userDetail.findOne({_id:req.body.id});
+      if(user){
+        res.send(user.notif);
+        console.log(user.notif);
+      } 
+    }catch(e){
+      console.log(e);
+    }
+  })
+
   router.post("/api/authcheck", async (req, res) => {
     try {
       const fetchedUserDetail = req.body;
@@ -100,6 +112,16 @@ router.post("/api/register", async (req, res) => {
       await updateres.save();
       console.log(req.body);
       res.send("got it");
+    }catch(e){
+      console.log(e);
+    }
+  })
+  router.post("/api/clearNotification",async(req,res)=>{
+    try{
+      const fetchData = req.body;
+      const user = await userDetail.findOne({_id:fetchData.id});
+      user.notif = [];
+      await user.save();
     }catch(e){
       console.log(e);
     }

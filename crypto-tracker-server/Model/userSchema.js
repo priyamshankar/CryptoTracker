@@ -8,6 +8,13 @@ const userDetailSchema = new mongoose.Schema({
     lastName : String,
     email : String,
     password : String,
+    notif:[
+      {
+        coin:String,
+        price:Number,
+
+      }
+    ],
     tokens: [
         {
           token: {

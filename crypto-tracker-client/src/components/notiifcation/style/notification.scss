@@ -1,0 +1,21 @@
+$primary-color: #BE1E2E;
+$fill-color:#FAE0E0;
+$secondary-color:#911738;
+
+.notifContainer{
+    position: absolute;
+    height: 50vh;
+    width: 20vw;
+    z-index: 999;
+    background-color: $fill-color;
+    top: 2.5rem;
+    .headNoti{
+        display: flex;
+        justify-content: space-evenly;
+        button{
+            all: unset;
+            color: $secondary-color;
+            cursor: pointer;
+        }
+    }
+}

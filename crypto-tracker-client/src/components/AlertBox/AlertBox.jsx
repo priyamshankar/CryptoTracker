@@ -8,7 +8,8 @@ const AlertBox = ({setAlert,coinId}) => {
         userId:cookies.get("id"),
         coinId : coinId,
         min : "",
-        max : ""
+        max : "",
+        notify:false
     });
 
 
@@ -28,6 +29,9 @@ const AlertBox = ({setAlert,coinId}) => {
             
         })
     }
+     function handlecheck(e){
+         setLimits({...limits,["notify"]:e.target.checked})
+     }
 
   return (
     <div className='alertBoxContainer'>
@@ -35,6 +39,9 @@ const AlertBox = ({setAlert,coinId}) => {
         <div className="inputBoxes">
             <input type="text" placeholder='Enter the minimunm limit'onChange={(handleChange)} name="min"/>
             <input type="text" onChange={(handleChange)} placeholder='Enter the Maximum Limit' name='max'/>
+        </div>
+        <div className="check">
+            <input type="checkbox" name='notify'  onChange={handlecheck}/> Also Notify via Email.
         </div>
         <div className="alertButtons">
             <button onClick={()=>{
