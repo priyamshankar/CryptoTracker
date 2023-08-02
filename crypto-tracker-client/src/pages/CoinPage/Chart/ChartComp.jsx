@@ -37,14 +37,14 @@ const ChartComp = ({ coinId }) => {
     const posProfit = dayhigh>0;
 
   useEffect(() => {
-    // fetchCoinData(); //mus tuncomment this
-    // fetchState();
+    fetchCoinData(); //mus tuncomment this
+    fetchState();
   }, [date]);
   return (
     <div className="chartcontainer">
         <div className="headerCharpage">
             <p>{coinId.toUpperCase()}</p>
-            <p>{ numberWithCommas(coinPrice)}</p>
+            <p style={{color:"	#89CFF0"}}>INR { numberWithCommas(coinPrice)}</p>
             <p style={{color: posProfit > 0 ? "rgb(14, 203, 129)" : "red",}}>{dayhigh.toFixed(2)}%</p>
         </div>
       <div className="graphContainer">
@@ -99,7 +99,7 @@ const ChartComp = ({ coinId }) => {
         </button>
         {alert && (
           <div className="alertdialog">
-            <AlertBox setAlert={setAlert} coinId={coinId} />
+            <AlertBox setAlert={setAlert} coinId={coinId} coinPrice={coinPrice}/>
           </div>
         )}
       </div>

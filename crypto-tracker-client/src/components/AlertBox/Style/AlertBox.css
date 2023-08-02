@@ -21,6 +21,16 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+.alertBoxContainer .inputBoxes span {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 1rem;
+}
+.alertBoxContainer .inputBoxes span label {
+  color: #911738;
+  font-weight: 700;
+}
 .alertBoxContainer .inputBoxes input {
   all: unset;
   font-size: 16px;
