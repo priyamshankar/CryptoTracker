@@ -5,6 +5,7 @@ const userDetail = require("../Model/userSchema");
 const alertSh = require("../Model/alertSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const email = require("../Controller/emailController");
 
 router.use(express.json());
 router.use(express.urlencoded({ extended: false }));
@@ -98,6 +99,7 @@ router.post("/api/register", async (req, res) => {
       
       await updateres.save();
       console.log(req.body);
+      email("priyamshankar.5@gmail.com","hello","hwllo");
       res.send("got it");
     }catch(e){
       console.log(e);
