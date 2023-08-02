@@ -1,7 +1,10 @@
 .chartcontainer .alertdialog {
   position: absolute;
 }
-.chartcontainer p {
+.chartcontainer .headerCharpage {
+  display: flex;
+}
+.chartcontainer .headerCharpage p {
   font-size: 34px;
   font-weight: 700;
   margin-left: 3rem;
@@ -33,6 +36,16 @@
   cursor: pointer;
 }
 .chartcontainer .button-graph button:hover {
-  background-color: #FAE0E0;
+  background-color: #fae0e0;
   color: #911738;
+}
+.chartcontainer button {
+  all: unset;
+  height: 10rem;
+  width: 7rem;
+  background-color: #911738;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
 }/*# sourceMappingURL=chart.css.map */

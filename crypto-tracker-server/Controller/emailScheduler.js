@@ -22,9 +22,10 @@ async function fetchAllData(){
 async function alertLogic(){
     allData.forEach(async(alertData)=>{
         
-        const coinPriceData = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${alertData.coinId}&vs_currencies=INR`);
+        const coinPriceData = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${alertData.coinId}&vs_currencies=INR&include_24hr_change=true`);
         const coinPrice = coinPriceData.data;
         const coinPriceInr = coinPrice[alertData.coinId].inr;
+        const change24Hr = coinPrice[alertData.coinId].inr_24h_change;
         // const coinPriceInr = 100; //temproarily bypassing the coingecko api since limit reached
         if(coinPriceInr<alertData.min || coinPriceInr>alertData.max){
             const user = await userDetail.findOneAndUpdate(
@@ -48,6 +49,7 @@ async function alertLogic(){
                   <p>
                     Your ${alertData.coinId} has now reached ${coinPriceInr}. Check out the Progress on CyptoNodes.
                   </p>
+                  <p>The change in last 24 hour in ${alertData.coinId} is &{change24Hr}. 
                   <script src="script.js"></script>
                 </body>
                 
@@ -61,8 +63,7 @@ async function alertLogic(){
 }
 
 
-cron.schedule('* */2 * * * *',()=>{
+cron.schedule('1 * * * * *',()=>{
     fetchAllData(); // important! dont forget to uncomment this
-    // email("priyamshankar.5@gmail.com","hello","hwllo");
     console.log("inside cron");
 })
