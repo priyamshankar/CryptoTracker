@@ -11,21 +11,21 @@ const [notiToggle , setnotiToggle ] = useState(false);
   const [notificaiton,setNotification] = useState([]);
   
   const [loginTrue, setloginTrue] = useState(true);
+  const fetch = async () => {
+    try {
+      const loggedin = await Auth();
+      // console.log(loggedin);
+      if(!loggedin){
+        setloginTrue(true);
+      }else{
+        setloginTrue(false);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
 
-    const fetch = async () => {
-      try {
-        const loggedin = await Auth();
-        // console.log(loggedin);
-        if(!loggedin){
-          setloginTrue(true);
-        }else{
-          setloginTrue(false);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
     fetch();
   }, []);
 
@@ -56,11 +56,11 @@ const [notiToggle , setnotiToggle ] = useState(false);
       <img src="https://blockspot-io.b-cdn.net/wp-content/uploads/luganodes-company-logo.webp" alt="logo" />
       </div>
       <div className="btnContents">
-        <button>
           <a href="/">
+        <button>
           Home
-          </a>
         </button>
+          </a>
         {/* <button>
           Favourites
         </button> */}

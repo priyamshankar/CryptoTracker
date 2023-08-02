@@ -27,11 +27,14 @@ async function alertLogic(){
         const coinPriceInr = coinPrice[alertData.coinId].inr;
         // const coinPriceInr = 100; //temproarily bypassing the coingecko api since limit reached
         if(coinPriceInr<alertData.min || coinPriceInr>alertData.max){
-            const user = await userDetail.findOne({_id:alertData.userId});
-            user.notif = user.notif.concat({coin:alertData.coinId,price:coinPriceInr})
-            await user.save();
+            const user = await userDetail.findOneAndUpdate(
+                { _id: alertData.userId },
+                { $push: { notif: { coin: alertData.coinId, price: coinPriceInr } } },
+                { new: true }
+              );
+              
             if(user && alertData.notify){
-                email(user.email,`CryptoNodes ${coinPriceInr} Price Alert`,`
+                email(user.email,`CryptoNodes ${alertData.coinId} Price Alert`,`
                 <html lang="en">
 
                 <head>
@@ -58,8 +61,8 @@ async function alertLogic(){
 }
 
 
-cron.schedule('*/5 * * * * *',()=>{
-    // fetchAllData(); // important! dont forget to uncomment this
+cron.schedule('* */2 * * * *',()=>{
+    fetchAllData(); // important! dont forget to uncomment this
     // email("priyamshankar.5@gmail.com","hello","hwllo");
     console.log("inside cron");
 })
