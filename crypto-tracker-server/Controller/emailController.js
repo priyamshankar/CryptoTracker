@@ -1,11 +1,12 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email', 
-    port: 587,
+    // host: 'smtp.ethereal.email', 
+    // port: 587,
+    service:"gmail",
     auth: {
-      user: 'garry.fadel@ethereal.email',
-      pass: 'qnvX9bxSCsmAexsTsZ',
+      user: 'dummydummysharma@gmail.com',
+      pass: 'hjwvsvpxnpwswflp',
     },
   });
   
@@ -14,10 +15,10 @@ const transporter = nodemailer.createTransport({
   const sendEmailAlert = async (recipientEmail, subject, body) => {
     try {
       const mailOptions = {
-        from: 'modesta72@ethereal.email', // Replace with your email address
+        from: 'dummydummysharma@gmail.com', 
         to: recipientEmail,
         subject: subject,
-        html: body, // The email content in HTML format
+        html: body,
       };
   
       const info = await transporter.sendMail(mailOptions);

@@ -4,10 +4,30 @@ import React, { useEffect, useState } from 'react';
 import "./style/Navbar.css";
 import bell from "../../Global/GlobalImages/bell.png";
 import Notification from '../notiifcation/Notification';
+import Auth from '../../controllers/Auth';
 
 const Navbar = () => {
 const [notiToggle , setnotiToggle ] = useState(false);
   const [notificaiton,setNotification] = useState([]);
+  
+  const [loginTrue, setloginTrue] = useState(true);
+  useEffect(() => {
+
+    const fetch = async () => {
+      try {
+        const loggedin = await Auth();
+        // console.log(loggedin);
+        if(!loggedin){
+          setloginTrue(true);
+        }else{
+          setloginTrue(false);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    fetch();
+  }, []);
 
   const fetchNotifications = async () =>{
     await axios.post("http://localhost:5000/api/notification",{id:Cookies.get("id")}).then((res)=>{
@@ -21,7 +41,7 @@ const [notiToggle , setnotiToggle ] = useState(false);
 
     const interval = setInterval(() => {
       fetchNotifications(); 
-    }, 3000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -37,23 +57,30 @@ const [notiToggle , setnotiToggle ] = useState(false);
       </div>
       <div className="btnContents">
         <button>
+          <a href="/">
           Home
+          </a>
         </button>
-        <button>
+        {/* <button>
           Favourites
-        </button>
-        <button>
-          Login
-        </button>
+        </button> */}
+        {loginTrue?<button>
+          <a href="/login">Login</a>
+        </button>:<button> <a href="/logout">Logout</a></button>}
+        
       </div>
         <div className="lastEmb">
+          {!loginTrue ?<>
           {notiToggle && <div className="closeban"onClick={toggleHandle}></div>}
           <div className="bell" >
           <img src={bell} alt="" onClick={toggleHandle}/>
           <p>{notificaiton.length}</p>
          {notiToggle && <Notification notificaiton={notificaiton} setNotification={setNotification}/>}
           </div>
-          <button>Contact us</button>
+          </>:<></>}
+          <a href="https://github.com/priyamshankar">
+            <button> Contact us</button>
+            </a>
         </div>
 
     </div>

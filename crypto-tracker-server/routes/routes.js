@@ -72,7 +72,7 @@ router.post("/api/register", async (req, res) => {
       const user = await userDetail.findOne({_id:req.body.id});
       if(user){
         res.send(user.notif);
-        console.log(user.notif);
+        // console.log(user.notif);
       } 
     }catch(e){
       console.log(e);
