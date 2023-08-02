@@ -3,6 +3,7 @@
 
 ## [Deployement Link](https://cryptonodeclient.vercel.app/)
 
+
 # Features
 - Login and Signup.
 - Few features are exclusive to the person who are signed up
@@ -10,6 +11,8 @@
 - push notificaiton
 - Graphical representation and Data visualisation ranges from pre hours to 1 year.
 - Encrypted password.
+
+  
 
 ## TechStack
 - React js
@@ -25,6 +28,8 @@
 - dotenv
 - node Crons
 
+  
+
 ## Installation
 CryptoNode requires [Node.js](https://nodejs.org/) v18+ to run.
 
@@ -32,14 +37,18 @@ There are two folders
 - client as crypto-tracker-client 
 - server as crypto-tracker-server
 
+
 First of all clone the repository
+
 
 ### To start the client 
 ```sh
 cd crypto-tracker-client
 npm i
 ```
+
 And wait till the client starts on your port http://localhost:3000
+
 
 ### To start the server
 ~~~ sh
