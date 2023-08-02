@@ -3,6 +3,7 @@ $fill-color:#FAE0E0;
 $secondary-color:#911738;
 
 .notifContainer{
+    border-radius: 10px;
     position: absolute;
     height: 50vh;
     width: 20vw;
@@ -16,6 +17,21 @@ $secondary-color:#911738;
             all: unset;
             color: $secondary-color;
             cursor: pointer;
+        }
+    }
+    .notimapcontainer{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        justify-items: center;
+        align-content: center;
+        // align-items: center;
+        hr{
+            color: $secondary-color;
+        }
+        .notiContent{
+            text-align: center;
+            // padding-top: 0.5rem;
         }
     }
 }

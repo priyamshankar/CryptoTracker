@@ -19,13 +19,18 @@ const Notification = ({notificaiton,setNotification}) => {
         </h2>
         <button onClick={clearNotification}>Clear</button>
         </div>
+        <div className="notimapcontainer">
+
         {notificaiton.map((notiData,i)=>{
             return (
+        
                 <div className="notiContent" key={i}>
+                    <hr />
                    Alert {notiData.coin} price is {notiData.price}
                 </div>
             )
         })}
+        </div>
     </div>
   )
 }

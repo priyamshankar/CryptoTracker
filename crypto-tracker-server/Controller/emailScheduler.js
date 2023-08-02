@@ -35,7 +35,7 @@ async function alertLogic(){
                 await alertSh.deleteOne(alertData._id);
             }
         console.log(alertData._id);
-    })
+    }) 
 }
 
 
